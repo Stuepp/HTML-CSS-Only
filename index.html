@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="'viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/index.css">
+        <title>gemineers</title>
+    </head>
+    <body>
+        <div class="navbar">
+            <img src="/maxresdefault.jpg" alt="">
+            <ul>
+                <li>Home</li>
+                <a href="#Produkt"><li>Product</li></a>
+                <li>News</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+        <div class="banner">
+            <img src="/dragon.jpg" alt="teste">
+        </div>
+        <div class="Produkt" id="Produkt">
+            <h1>Produkt</h1>
+            <p>   Die gemineers Digtial Twin Plattform zur datengetriebenen Qualitätssicherung ermöglicht Ihnen
+                    den mühelosen Zugriff auf bisher unerschlossene Fertigungsdaten,
+                    die vollständige Digitalisierung Ihrer Produkte und die einfache Bewertung der Bauteilqualität.
+            </p>
+            <div class="Produkt-grid">
+                <img src="/sage.jpg" width="628px" alt="">
+                <img src="/dwarf.jpg" width="628px" alt="">
+            </div>
+        </div>
+        <h1 style="margin: auto; text-align: center;">Anwendungsbeispiele</h1>
+        <div class="Anwendungsbeispiele">
+            <div class="canvas">
+                <button class="btLeft" onclick="change(-1)"><-</button>
+                <div id="ein">
+                    <h2>Prozessüberwachung</h2>
+                    <p>Mit Hilfe des Digitalen Zwillings Ausschuss um bis zu <strong>20%</strong> verringern</p>
+                    <div class="imgs">
+                        <img src="/maxresdefault.jpg" alt="">
+                        <line></line>
+                        <img src="/Screenshot_6.jpg" alt="">
+                    </div>
+                </div>
+                <div id="zwei">
+                    <h2>Qualitätsbewertung</h2>
+                    <p>ufwände um bis zu <strong>80%</strong> reduzieren</p>
+                    <div class="imgs">
+                        <img src="/charlie_and_adam.webp" alt="">
+                        <line></line>
+                        <img src="/hq720.jpg" alt="">
+                    </div>
+                </div>
+                <div id="drei">
+                    <h2>Qualitätsbewertung</h2>
+                    <p>Mit Hilfe des Digitalen Zwillings Prozesszeiten um bis zu <strong>30%</strong> verkürzen</p>
+                    <div class="imgs">
+                        <img src="/lute1.jpg" alt="">
+                        <line></line>
+                        <img src="/star-wars-1680799242.jpg" alt="">
+                    </div>
+                </div>
+                <button class="btRight" onclick="change(1)">-></button>
+            </div>
+            <div class="dots">
+                <span class="dot" id="dot1" style="background-color: chartreuse;"></span>
+                <span class="dot" id="dot2"></span>
+                <span class="dot" id="dot3"></span>
+            </div>
+        </div>
+        <div class="Produktmodule">
+            <h1>Produktmodule</h1>
+            <p> Die gemineers Digital Twin Plattform kann wahlweise mit dem Produktmodel »Basic«
+                oder dem Produktmodul »Advanced« konfiguriert werden. 
+            </p>
+            <div class="cards">
+                <div class="card" style="background-color: blue;">
+                    <h2>Produktmodul »Basic«</h2>
+                    <img src="/maxresdefault.jpg" alt="">
+                    <ul>
+                        <li>Ein</li>
+                        <li>Zwei</li>
+                        <li>Drei</li>
+                    </ul>
+                    <button style="color: blue;">JETZT ANFRAGEN</button>
+                </div>
+                <div class="card" style="background-color: darkblue;">
+                    <h2>Produktmodul »Advanced«</h2>
+                    <img src="/luke-lego.jpg" alt="">
+                    <ul>
+                        <li>ein</li>
+                        <li>zwei</li>
+                        <li>drei</li>
+                    </ul>
+                    <button style="color: darkblue;">JETZT ANFRAGEN</button>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        let canvas = ['ein','zwei','drei'], dots = ['dot1','dot2','dot3']
+        let firstpos = 0, lastpos = 2
+
+
+        function atualPos(){
+            for (let index = 0; index < canvas.length; index++) {
+                let element = document.getElementById(canvas[index]);
+                let computedStyle = window.getComputedStyle(element); // Obter estilos computados do elemento
+                if(computedStyle.display === 'block'){
+                    return index
+                }
+            }
+        }
+        function nextCanvas(pos, nextpos){
+            if(pos == 0 && nextpos == -1){
+                e = document.getElementById(canvas[lastpos])
+                e.style.display = 'block'
+                dot = document.getElementById(dots[lastpos])
+                dot.style.backgroundColor = 'chartreuse'
+            }if(pos == 2 && nextpos == 1){
+                e = document.getElementById(canvas[firstpos])
+                e.style.display = 'block'
+                dot = document.getElementById(dots[firstpos])
+                dot.style.backgroundColor = 'chartreuse'
+            }else{
+                e = document.getElementById(canvas[(pos+nextpos)])
+                e.style.display = 'block'
+                dot = document.getElementById(dots[pos+nextpos])
+                dot.style.backgroundColor = 'chartreuse'
+            }
+        }
+        function change(nextpos){
+            let pos = atualPos()
+            e = document.getElementById(canvas[pos])
+            e.style.display = 'none'
+            
+            dot = document.getElementById(dots[pos])
+            dot.style.backgroundColor = 'white'
+            
+            nextCanvas(pos, nextpos)
+        }
+    </script>
+</html>
